@@ -23,7 +23,7 @@ const bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MES
 let startCom = prefix+command;
 bot.on("message", (message) => {
   if (message.content.startsWith(startCom)) {
-    message.channel.sendMessage(randomQuote());
+    message.channel.send(randomQuote());
   }
 });
 
