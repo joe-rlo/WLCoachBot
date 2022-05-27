@@ -1,10 +1,10 @@
-var CONFIG = require('./config.json');
-var quotes = CONFIG.quotes;
-var prefix = CONFIG.prefix;
-var command = CONFIG.command;
+let CONFIG = require('./config.json');
+let quotes = CONFIG.quotes;
+let prefix = CONFIG.prefix;
+let command = CONFIG.command;
 
-var InfiniteLoop = require('infinite-loop');
-var il = new InfiniteLoop;
+let InfiniteLoop = require('infinite-loop');
+let il = new InfiniteLoop;
 
 function randomQuote() {
 	return quotes[Math.floor(Math.random() * quotes.length)];
@@ -16,11 +16,13 @@ il.run();
 
 console.log(randomQuote());
 
-var Discord = require("discord.js");
-var bot = new Discord.Client();
+const { Client, Intents } = require('discord.js');
 
+const bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+
+let startCom = prefix+command;
 bot.on("message", (message) => {
-  if (message.content.startsWith(prefix command)) {
+  if (message.content.startsWith(startCom)) {
     message.channel.sendMessage(randomQuote());
   }
 });
